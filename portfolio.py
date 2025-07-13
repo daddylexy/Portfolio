@@ -296,7 +296,7 @@ elif active_tab == "ABOUT ME":
     c1, c2, c3= st.columns([.5, 3, .5])
     
     with c2:
-        st.image("languages.gif", use_container_width=True)
+        st.image("Images\languages.gif", use_container_width=True)
 
 
     st.write("I enjoy working with data — organizing, analyzing, and turning it into meaningful insights that help solve real problems. I’m eager to grow as a data analyst and make an impact in this world.")
@@ -318,7 +318,7 @@ elif active_tab == "PROJECTS":
 
         st.subheader("Description")
         st.write("For this project I took an amazon data set found on Kraggle, and tried to find useful insights that would benefit the company!")
-        Amazon_Dataset = pd.read_csv("amazon_sales_data 2025.csv")
+        Amazon_Dataset = pd.read_csv("Files\amazon_sales_data 2025.csv")
         st.dataframe(Amazon_Dataset)
 
         st.write("What is the total sales revenue for the entire dataset?\n")
@@ -349,7 +349,7 @@ elif active_tab == "RESUME":
 elif active_tab == "CONTACT":
     st.subheader("CONTACT ME")
     st.divider()
-    image = Image.open("contactpicture.jpg")
+    image = Image.open("Images/contactpicture.jpg")
     resized_image = image.resize((221, 300), Image.LANCZOS)
 
     col1, col2, col3 = st.columns([1.5, 1, 1])
