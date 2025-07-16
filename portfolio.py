@@ -314,9 +314,9 @@ elif active_tab == "ABOUT ME":
     c1, c2= st.columns([1, 1])
     
     with c1:
-        st.image("languages.gif", use_container_width=True)
+        st.image("Images\languages.gif", use_container_width=True)
     with c2:
-        st.image("softwares.gif", use_container_width=True)
+        st.image("Images\softwares.gif", use_container_width=True)
 
 
     st.write("I enjoy working with data — organizing, analyzing, and turning it into meaningful insights that help solve real problems. I’m eager to grow as a data analyst and make an impact in this world.")
@@ -351,12 +351,12 @@ elif active_tab == "PROJECTS":
         st.write("p4 project info")
 
 elif active_tab == "RESUME":
-    st.image("resume_2025.png", width = 800)
+    st.image(r"Images\resume_2025.png")
 
 elif active_tab == "CONTACT":
     st.subheader("CONTACT ME")
     st.divider()
-    image = Image.open("contactpicture.jpg")
+    image = Image.open("Images\contactpicture.jpg")
     resized_image = image.resize((221, 300), Image.LANCZOS)
 
     col1, col2, col3 = st.columns([1.5, 1, 1])
