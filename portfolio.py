@@ -314,9 +314,9 @@ elif active_tab == "ABOUT ME":
     c1, c2= st.columns([1, 1])
     
     with c1:
-        st.image("Images\languages.gif", use_container_width=True)
+        st.image("Images/languages.gif", use_container_width=True)
     with c2:
-        st.image("Images\softwares.gif", use_container_width=True)
+        st.image("Images/softwares.gif", use_container_width=True)
 
 
     st.write("I enjoy working with data — organizing, analyzing, and turning it into meaningful insights that help solve real problems. I’m eager to grow as a data analyst and make an impact in this world.")
@@ -338,9 +338,9 @@ elif active_tab == "PROJECTS":
 
         st.subheader("Warehouse Sales Data")
         st.write("For this project I used a combination of MySQL Workbench, and Tableu in order to show visual insights from a warehouse data set.")
-        warehouse_sales_data = pd.read_csv("csv\Warehouse_and_Retail_Sales.csv")
+        warehouse_sales_data = pd.read_csv("csv/Warehouse_and_Retail_Sales.csv")
         st.dataframe(warehouse_sales_data)
-        st.image('Images\warehouse_sales_data.png')
+        st.image('Images/warehouse_sales_data.png')
         st.markdown("[🔗 View Interactive Dashboard](https://public.tableau.com/views/warehouse_sales_visualization/warehouse_sales_data?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)")
 
     elif projects == "p2":
@@ -351,12 +351,12 @@ elif active_tab == "PROJECTS":
         st.write("p4 project info")
 
 elif active_tab == "RESUME":
-    st.image(r"Images\resume_2025.png")
+    st.image(r"Images/resume_2025.png")
 
 elif active_tab == "CONTACT":
     st.subheader("CONTACT ME")
     st.divider()
-    image = Image.open("Images\contactpicture.jpg")
+    image = Image.open("Images/contactpicture.jpg")
     resized_image = image.resize((221, 300), Image.LANCZOS)
 
     col1, col2, col3 = st.columns([1.5, 1, 1])
