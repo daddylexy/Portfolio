@@ -1,13 +1,14 @@
 import random
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 from PIL import Image
+import base64
 import smtplib 
 from email.mime.text import MIMEText
 
 # Color picker for text color
 # Color picker (hidden but still functional)
-color = st.color_picker("", "#ffffff", label_visibility="collapsed")
 
 # Sidebar navigation - always aligned left
 active_tab = st.sidebar.radio("", ["HOME", "ABOUT ME", "PROJECTS", "RESUME", "CONTACT"])
@@ -40,7 +41,7 @@ style_holder.markdown(
 
     body, .css-1d391kg p, .stText, .stMarkdown, .st-emotion-cache-qbgoph, .st-emotion-cache-1ort0lt, .st-bp, .st-emotion-cache-8atqhb, .st-emotion-cache-3jjymv,
     h1, h2, h3, h4, h5, h6 {{
-        color: {color} !important;
+        color: white !important;
         font-family: 'Press Start 2P', monospace !important;
     }}
 
@@ -165,9 +166,9 @@ style_holder.markdown(
 
     /* Style the image container */
     div[data-testid="stImageContainer"] img {{
-    border: 9px solid #EAD4CC;         /* Pixel-style color */
+    border: 10px solid #ad8b82;         /* Pixel-style color */
     border-radius: 0px;                /* Rounded corners (optional) */
-    box-shadow: 0 0 12px #EAD4CC;      /* Soft glow effect */
+    box-shadow: 0 0 0px #EAD4CC;      /* Soft glow effect */
     padding: 0px;                      /* Padding inside the border */
     max-width: 100%;
     height: auto;
@@ -185,10 +186,10 @@ style_holder.markdown(
 
     /* Dropdown background container */
     ul[data-testid="stSelectboxVirtualDropdown"] {{
-    background-color: rgba(62, 47, 44, 0.4) !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
     backdrop-filter: blur(0px);
     border-radius: 18px;
-    padding: 10px;
+    padding: 2px;
     border: 0px solid rgba(255, 255, 255, 0.2);
     }}
 
@@ -199,7 +200,7 @@ style_holder.markdown(
     padding: 8px 12px;
     margin-bottom: 5px;
     color: #ffffff !important;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     font-family: 'Press Start 2P', monospace !important;
     font-size: 10px;
     }} 
@@ -207,13 +208,14 @@ style_holder.markdown(
     /* Hover effect on dropdown items */
     ul[data-testid="stSelectboxVirtualDropdown"] li:hover {{
     background-color: rgba(255, 255, 255, 0.15);
-    transform: scale(1.01);
+    transform: scale(1.02);
     cursor: pointer;
     }}
 
     /* Make Streamlit DataFrame square-edged */
     [data-testid="stDataFrame"] .stDataFrameGlideDataEditor {{
-        border-radius: 2rem !important;
+        border-radius: 0rem !important;
+        border: 5px solid #ad8b82;
     }}
 
     /*Width of the text_area boxes*/
@@ -267,7 +269,15 @@ style_holder.markdown(
     }}
 
     .st-emotion-cache-z8vbw2 {{
-        background-color: rgba(255, 255, 255, 0.2)
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    }}
+
+    .st-emotion-cache-z8vbw2:hover {{
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 75, 75);
+    transform: scale(1.08);
+    cursor: pointer;
     }}
 
     .st-b3 {{
@@ -275,9 +285,17 @@ style_holder.markdown(
     }}
     
     .st-ao {{
-    margin-top: 12px;
+    margin-top: 0px;
     }}
-    
+
+    .st-ew {{
+    margin-top: 8px;
+    }}
+
+    .st-ak {{
+    gap: 24px;
+    }}
+        
     </style>
     """,
     unsafe_allow_html=True,
@@ -293,10 +311,12 @@ elif active_tab == "ABOUT ME":
 
     st.write("Hi! My name is Analexy Galvan Galvan. I am a Computer Science Senior currently attending the University of Texas Rio Grande Valley.")
 
-    c1, c2, c3= st.columns([.5, 3, .5])
+    c1, c2= st.columns([1, 1])
     
+    with c1:
+        st.image("languages.gif", use_container_width=True)
     with c2:
-        st.image("Images\languages.gif", use_container_width=True)
+        st.image("softwares.gif", use_container_width=True)
 
 
     st.write("I enjoy working with data — organizing, analyzing, and turning it into meaningful insights that help solve real problems. I’m eager to grow as a data analyst and make an impact in this world.")
@@ -308,29 +328,20 @@ elif active_tab == "PROJECTS":
     st.subheader("PROJECTS")
     projects = st.selectbox("Search", [
         " ",
-        "Amazon's Sales Dataset",
+        "Warehouse Sales Data",
         "p2",
         "p3",
         "p4"
     ])
 
-    if projects == "Amazon's Sales Dataset":
+    if projects == "Warehouse Sales Data":
 
-        st.subheader("Description")
-        st.write("For this project I took an amazon data set found on Kraggle, and tried to find useful insights that would benefit the company!")
-        Amazon_Dataset = pd.read_csv("Files\amazon_sales_data 2025.csv")
-        st.dataframe(Amazon_Dataset)
-
-        st.write("What is the total sales revenue for the entire dataset?\n")
-        st.markdown('<p style="color: pink;">$184,257,625</p>', unsafe_allow_html=True)
-        st.write("How many total orders were made?\n")
-        st.markdown('<p style="color: pink;">243,835</p>', unsafe_allow_html=True)
-        st.write("What is the average order value?\n")
-        st.write("")
-        st.write("How do monthly sales compare over the year?\n")
-        st.markdown('<p style="color: pink;">The most sales were made in the month of February.</p>', unsafe_allow_html=True)
-        st.write("**Which day of the week has the highest number of orders?\n**")
-        st.write("")
+        st.subheader("Warehouse Sales Data")
+        st.write("For this project I used a combination of MySQL Workbench, and Tableu in order to show visual insights from a warehouse data set.")
+        warehouse_sales_data = pd.read_csv("csv\Warehouse_and_Retail_Sales.csv")
+        st.dataframe(warehouse_sales_data)
+        st.image('Images\warehouse_sales_data.png')
+        st.markdown("[🔗 View Interactive Dashboard](https://public.tableau.com/views/warehouse_sales_visualization/warehouse_sales_data?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)")
 
     elif projects == "p2":
         st.write("p2 project info")
@@ -340,16 +351,12 @@ elif active_tab == "PROJECTS":
         st.write("p4 project info")
 
 elif active_tab == "RESUME":
-    st.subheader("Analexy Galvan Galvan")
-    st.write("**Languages:**")
-    st.write("C++, Python, SQL")
-    st.write("**Experience:**")
-
+    st.image("resume_2025.png", width = 800)
 
 elif active_tab == "CONTACT":
     st.subheader("CONTACT ME")
     st.divider()
-    image = Image.open("Images/contactpicture.jpg")
+    image = Image.open("contactpicture.jpg")
     resized_image = image.resize((221, 300), Image.LANCZOS)
 
     col1, col2, col3 = st.columns([1.5, 1, 1])
@@ -359,7 +366,7 @@ elif active_tab == "CONTACT":
 
     
 
-    # Email function
+    # EMAIL LOGIC
     def send_otp(email, otp_code):
         msg = MIMEText(f"Your verification code is: {otp_code}")
         msg["Subject"] = "Verify your email"
